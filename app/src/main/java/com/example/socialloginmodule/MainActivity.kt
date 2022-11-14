@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
              })
             }else{
                 Toast.makeText(this, "Feature not available", Toast.LENGTH_SHORT).show()
-                Log.d(TAG, "onCreate: Feature no available ")
             }
             
         }
