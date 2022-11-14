@@ -24,7 +24,7 @@ object GoogleSignUpWithoutFirebase {
 
         //Fire intent to choose account
         val intent = mGoogleSignInClient.signInIntent
-        (context as Activity).startActivityForResult(intent, 1001)
+        (context as Activity).startActivityForResult(intent, 100)
 
     }
 
@@ -34,7 +34,7 @@ object GoogleSignUpWithoutFirebase {
                        success: (GoogleSignInAccount) -> Unit,
                        failure: (Throwable) -> Unit) {
 
-            if (requestCode == 1001){
+            if (requestCode == 100){
                 try {
                     val task =  GoogleSignIn.getSignedInAccountFromIntent(data)
                     signInResult = task.result
