@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SocialLoginModule</string>
+    <string name="google_sign_in">SIGN IN WITH GOOGLE</string>
+    <string name="github_sign_in">SIGN IN WITH GITHUB</string>
+    <string name="fingerprint_sign_in">SIGN IN WITH FINGERPRINT</string>
+    <string name="sign_in_with_facebook">SIGN IN WITH FACEBOOK</string>
+    <string name="sign_in_google_without_firebase">SIGN IN GOOGLE WITHOUT FIREBASE</string>
+    <string name="facebook_app_id">662611592094935</string>
+    <string name="fb_login_protocol_scheme">fb662611592094935</string>
+    <string name="facebook_client_token">6d393c1893042720a2135e969d9c2c5d</string>
+</resources>
