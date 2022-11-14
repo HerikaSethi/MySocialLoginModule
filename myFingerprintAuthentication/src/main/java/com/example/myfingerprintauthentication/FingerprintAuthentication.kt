@@ -22,22 +22,26 @@ object FingerprintAuthentication {
     private lateinit var authenticationResult: BiometricPrompt.AuthenticationResult
 
 
-    fun createBiometricRequest(context: Context): Intent{
+    fun createBiometricRequest(context: Context): Intent {
 
         val biometricManager = BiometricManager.from(context)
         when (biometricManager.canAuthenticate(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS ->
                 Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
-                Toast.makeText(context, "Fingerprint sensor does not exist", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Fingerprint sensor does not exist", Toast.LENGTH_SHORT)
+                    .show()
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
-                Toast.makeText(context, "Biometric hardware does not exist", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Biometric hardware does not exist", Toast.LENGTH_SHORT)
+                    .show()
             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
                 // Prompts the user to create credentials that your app accepts.
-               enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL)
-               enrollIntent.apply {
-                    putExtra(Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-                        BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
+                enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL)
+                enrollIntent.apply {
+                    putExtra(
+                        Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                        BIOMETRIC_STRONG or DEVICE_CREDENTIAL
+                    )
                 }
                 //startActivityForResult(enrollIntent, REQUEST_CODE)
             }
@@ -45,7 +49,11 @@ object FingerprintAuthentication {
         return enrollIntent
     }
 
-    fun authenticateWithFingerprint(context: Context,success:(BiometricPrompt.AuthenticationResult)->Unit,failure:(CharSequence)->Unit){
+    fun authenticateWithFingerprint(
+        context: Context,
+        success: (BiometricPrompt.AuthenticationResult) -> Unit,
+        failure: (CharSequence) -> Unit
+    ) {
         val cont = context as FragmentActivity
         executor = ContextCompat.getMainExecutor(context)
 
@@ -54,17 +62,23 @@ object FingerprintAuthentication {
 
         biometricPrompt = BiometricPrompt(cont, executor,
             object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationError(errorCode: Int,
-                                                   errString: CharSequence) {
+                override fun onAuthenticationError(
+                    errorCode: Int,
+                    errString: CharSequence
+                ) {
                     super.onAuthenticationError(errorCode, errString)
                     Log.d("fingerprint", "onAuthenticationError: $errString")
                     failure.invoke(errString)
                 }
 
                 override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult) {
+                    result: BiometricPrompt.AuthenticationResult
+                ) {
                     super.onAuthenticationSucceeded(result)
-                    Log.d("fingerprint", "onAuthenticationSucceeded: Authentication succeeded $result")
+                    Log.d(
+                        "fingerprint",
+                        "onAuthenticationSucceeded: Authentication succeeded $result"
+                    )
                     success.invoke(result)
                     authenticationResult = result
                 }
