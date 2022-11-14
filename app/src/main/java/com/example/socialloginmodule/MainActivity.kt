@@ -2,7 +2,6 @@ package com.example.socialloginmodule
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,7 +15,7 @@ import com.example.socialloginmodule.utils.HelperConstants
 
 class MainActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         const val TAG = "MainActivity"
     }
 
@@ -41,21 +40,24 @@ class MainActivity : AppCompatActivity() {
 
         /** Fingerprint Sign In */
         binding.btnFingerprintSignIn.setOnClickListener {
-            if (android.os.Build.VERSION.SDK_INT <= 33) {
-//                val enrollmentIntent = FingerprintAuthentication.createBiometricRequest(this)
-//                startActivityForResult(
-//                    enrollmentIntent,
-//                    HelperConstants.FINGERPRINT_LOGIN_REQUEST_CODE
-//                )
-             FingerprintAuthentication.authenticateWithFingerprint(this@MainActivity,{
-                 Toast.makeText(this, "Fingerprint authentication success${it}", Toast.LENGTH_SHORT).show()
-             },{
-                 Toast.makeText(this, "fingerprint authentication failure $it", Toast.LENGTH_SHORT).show()
-             })
-            }else{
+            if (android.os.Build.VERSION.SDK_INT >= 28) {
+
+                FingerprintAuthentication.authenticateWithFingerprint(this@MainActivity, {
+                    Toast.makeText(
+                        this,
+                        "Fingerprint authentication success::${it}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }, {
+                    Toast.makeText(
+                        this,
+                        "fingerprint authentication failure:: $it",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
+            } else {
                 Toast.makeText(this, "Feature not available", Toast.LENGTH_SHORT).show()
             }
-            
         }
 
         /** Facebook Sign In */
@@ -75,17 +77,33 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        activityResult(requestCode,resultCode,data,{ success->
-            Toast.makeText(this, "Google signIn with firebase success:${success.displayName}", Toast.LENGTH_SHORT).show()
-        },{ exception->
-            Toast.makeText(this, "Google signIn with firebase exception : ${exception.message}", Toast.LENGTH_SHORT).show()
+        activityResult(requestCode, resultCode, data, { success ->
+            Toast.makeText(
+                this,
+                "Google signIn with firebase success:${success.displayName}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }, { exception ->
+            Toast.makeText(
+                this,
+                "Google signIn with firebase exception : ${exception.message}",
+                Toast.LENGTH_SHORT
+            ).show()
         })
 
 
-        GoogleSignUpWithoutFirebase.activityResult(requestCode,resultCode,data,{ success->
-            Toast.makeText(this, "GoogleSignIn without Firebase success ${success.displayName}", Toast.LENGTH_SHORT).show()
-        },{ exception ->
-            Toast.makeText(this, "GoogleSignIn without Firebase exception: ${exception.message}", Toast.LENGTH_SHORT).show()
+        GoogleSignUpWithoutFirebase.activityResult(requestCode, resultCode, data, { success ->
+            Toast.makeText(
+                this,
+                "GoogleSignIn without Firebase success ${success.displayName}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }, { exception ->
+            Toast.makeText(
+                this,
+                "GoogleSignIn without Firebase exception: ${exception.message}",
+                Toast.LENGTH_SHORT
+            ).show()
         })
     }
 

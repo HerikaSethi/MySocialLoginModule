@@ -7,6 +7,17 @@ plugins {
 android {
     compileSdk 33
 
+    signingConfigs {
+        create("production-release") {
+            storeFile =
+                    file("/Users/bigoh/social-login/keystore")
+
+            storePassword = "Test@123"
+            keyAlias = "key"
+            keyPassword = "Test@123"
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.socialloginmodule"
         minSdk 21
@@ -18,9 +29,9 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
+        getByName("release") {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.getByName("production-release")
         }
     }
     compileOptions {

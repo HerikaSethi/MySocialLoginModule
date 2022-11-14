@@ -14,7 +14,11 @@ object FacebookSignUp {
 
     private lateinit var callbackManager: CallbackManager
 
-    fun signUpWithFacebook(context: Context,success:(Profile)->Unit,failure:(Throwable)->Unit){
+    fun signUpWithFacebook(
+        context: Context,
+        success: (Profile) -> Unit,
+        failure: (Throwable) -> Unit
+    ) {
         callbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
@@ -43,8 +47,7 @@ object FacebookSignUp {
                                 Log.d("onSuccess", "onSuccess: profile is:: $id")
                                 Log.d("onSuccess", "onSuccess: profile is:: $lastname")
                             }
-                        }
-                        catch (e: JSONException) {
+                        } catch (e: JSONException) {
                             failure.invoke(e)
                         }
                     }
@@ -63,10 +66,11 @@ object FacebookSignUp {
                     return
                 }
             })
-        LoginManager.getInstance().logInWithReadPermissions(context as Activity, listOf("public_profile"))
+        LoginManager.getInstance()
+            .logInWithReadPermissions(context as Activity, listOf("public_profile","email","user_friends"))
     }
 
-    fun activityResult(requestCode: Int, resultCode: Int, data: Intent?){
+    fun activityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 }
