@@ -14,9 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 object GoogleSignUp {
 
-    lateinit var auth: FirebaseAuth
-    lateinit var success: (GoogleSignInAccount) -> Unit
-    lateinit var failure: (Throwable) -> Unit
+    private lateinit var auth: FirebaseAuth
+    private lateinit var success: (GoogleSignInAccount) -> Unit
+    private lateinit var failure: (Throwable) -> Unit
 
     fun signInWithGoogle(context: Context, requestToken: String, success: (GoogleSignInAccount) -> Unit,failure: (Throwable) -> Unit) {
         this.success = success

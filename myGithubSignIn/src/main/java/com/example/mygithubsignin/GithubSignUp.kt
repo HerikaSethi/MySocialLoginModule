@@ -13,7 +13,7 @@ import com.google.firebase.auth.OAuthProvider
 
 
 object GithubSignUp {
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     var authenticationResult: AuthResult? = null
 
     fun signInWithGithub(context: Context,
