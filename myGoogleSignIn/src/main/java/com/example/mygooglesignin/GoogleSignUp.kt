@@ -15,8 +15,13 @@ import com.google.firebase.auth.FirebaseAuth
 object GoogleSignUp {
 
     lateinit var auth: FirebaseAuth
+    lateinit var success: (GoogleSignInAccount) -> Unit
+    lateinit var failure: (Throwable) -> Unit
 
-    fun signInWithGoogle(context: Context, requestToken: String) {
+    fun signInWithGoogle(context: Context, requestToken: String, success: (GoogleSignInAccount) -> Unit,failure: (Throwable) -> Unit) {
+        this.success = success
+        this.failure = failure
+
         FirebaseApp.initializeApp(context)
         auth = FirebaseAuth.getInstance()
 
@@ -43,8 +48,7 @@ object GoogleSignUp {
     fun activityResult(requestCode: Int,
                        resultCode: Int,
                        data: Intent?,
-                       success: (GoogleSignInAccount) -> Unit,
-                       failure: (Throwable) -> Unit){
+                       ){
 
             if (requestCode == 1001){
                 try {

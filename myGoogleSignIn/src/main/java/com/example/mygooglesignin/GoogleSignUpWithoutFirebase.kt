@@ -11,9 +11,14 @@ import com.google.android.gms.common.api.ApiException
 
 object GoogleSignUpWithoutFirebase {
 
-   lateinit var signInResult: GoogleSignInAccount
+    lateinit var signInResult: GoogleSignInAccount
+    lateinit var success: (GoogleSignInAccount) -> Unit
+    lateinit var failure: (Throwable) -> Unit
 
-    fun signUpWithGoogleWithoutFirebase(context: Context){
+
+    fun signUpWithGoogleWithoutFirebase(context: Context,success: (GoogleSignInAccount) -> Unit, failure: (Throwable) -> Unit){
+        this.success = success
+        this.failure = failure
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -31,8 +36,7 @@ object GoogleSignUpWithoutFirebase {
     fun activityResult(requestCode: Int,
                        resultCode: Int,
                        data: Intent?,
-                       success: (GoogleSignInAccount) -> Unit,
-                       failure: (Throwable) -> Unit) {
+                       ) {
 
             if (requestCode == 100){
                 try {

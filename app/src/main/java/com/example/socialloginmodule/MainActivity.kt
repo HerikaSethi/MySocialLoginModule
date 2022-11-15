@@ -29,7 +29,19 @@ class MainActivity : AppCompatActivity() {
 
         /** Google Sign In */
         binding.btnGoogleSignIn.setOnClickListener {
-            signInWithGoogle(this@MainActivity, HelperConstants.REQUEST_TOKEN)
+            signInWithGoogle(this@MainActivity, HelperConstants.REQUEST_TOKEN, { success ->
+                Toast.makeText(
+                    this,
+                    "Google signIn with firebase success : ${success.displayName}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }, { exception ->
+                Toast.makeText(
+                    this,
+                    "Google signIn with firebase exception : ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
         }
 
         /** Github Sign In */
@@ -68,43 +80,28 @@ class MainActivity : AppCompatActivity() {
 
         /** Google Sign In Without Firebase */
         binding.btnGoogleWithoutFirebase.setOnClickListener {
-            GoogleSignUpWithoutFirebase.signUpWithGoogleWithoutFirebase(this@MainActivity)
+            GoogleSignUpWithoutFirebase.signUpWithGoogleWithoutFirebase(this@MainActivity,
+                { success ->
+                    Toast.makeText(
+                        this,
+                        "GoogleSignIn without Firebase success ${success.displayName}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },
+                { exception ->
+                    Toast.makeText(
+                        this,
+                        "GoogleSignIn without Firebase exception: ${exception.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
         }
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        activityResult(requestCode, resultCode, data, { success ->
-            Toast.makeText(
-                this,
-                "Google signIn with firebase success:${success.displayName}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }, { exception ->
-            Toast.makeText(
-                this,
-                "Google signIn with firebase exception : ${exception.message}",
-                Toast.LENGTH_SHORT
-            ).show()
-        })
-
-
-        GoogleSignUpWithoutFirebase.activityResult(requestCode, resultCode, data, { success ->
-            Toast.makeText(
-                this,
-                "GoogleSignIn without Firebase success ${success.displayName}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }, { exception ->
-            Toast.makeText(
-                this,
-                "GoogleSignIn without Firebase exception: ${exception.message}",
-                Toast.LENGTH_SHORT
-            ).show()
-        })
+        activityResult(requestCode, resultCode, data)
+        GoogleSignUpWithoutFirebase.activityResult(requestCode, resultCode, data)
     }
 
 }
