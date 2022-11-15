@@ -10,8 +10,7 @@ The user can import this as module into their projects and implement the social 
 - Facebook Login using sdk
 - Github Login
 - Fingerprint Login
-- Twitter Login
-- 
+
 ## Documentation
 
 Modules:
