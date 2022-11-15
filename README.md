@@ -1,4 +1,17 @@
+# Social Login Module
 
+This is a modular project in kotlin which includes Social Login CTAs and functionality.
+The user can import this as module into their projects and implement the social logins by calling some simple functions.
+
+## Social Logins
+
+- Google Login with Firebase
+- Google Login without Firebase
+- Facebook Login using sdk
+- Github Login
+- Fingerprint Login
+- Twitter Login
+- 
 ## Documentation
 
 Modules:
