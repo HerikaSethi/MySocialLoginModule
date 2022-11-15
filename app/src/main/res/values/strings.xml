@@ -8,4 +8,5 @@
     <string name="facebook_app_id">662611592094935</string>
     <string name="fb_login_protocol_scheme">fb662611592094935</string>
     <string name="facebook_client_token">6d393c1893042720a2135e969d9c2c5d</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
 </resources>
