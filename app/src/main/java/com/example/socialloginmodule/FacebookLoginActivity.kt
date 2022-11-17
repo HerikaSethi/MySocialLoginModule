@@ -17,23 +17,32 @@ class FacebookLoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_facebook_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_facebook_login)
 
         binding.loginButton.setOnClickListener {
-          FacebookSignUp.signUpWithFacebook(this,
-              {
-                  Toast.makeText(this, "facebook SignUp success ${it.name}", Toast.LENGTH_SHORT).show()
-              },
-              {
-                  Toast.makeText(this, "facebook signup exception:${it.message}", Toast.LENGTH_SHORT).show()
-              })
+            FacebookSignUp.signUpWithFacebook(this,
+                { profile ->
+                    Toast.makeText(
+                        this,
+                        "facebook SignUp success ${profile.name}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },
+                { exception ->
+                    Toast.makeText(
+                        this,
+                        "facebook signup exception:${exception.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
 
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        FacebookSignUp.activityResult(requestCode,resultCode,data)
+        FacebookSignUp.activityResult(requestCode, resultCode, data)
     }
 
 }

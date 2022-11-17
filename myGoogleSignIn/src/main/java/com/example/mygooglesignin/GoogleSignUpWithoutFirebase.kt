@@ -35,7 +35,7 @@ object GoogleSignUpWithoutFirebase {
 
     fun activityResult(requestCode: Int,
                        resultCode: Int,
-                       data: Intent?,
+                       data: Intent?
                        ) {
 
             if (requestCode == 100){

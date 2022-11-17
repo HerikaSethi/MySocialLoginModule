@@ -193,17 +193,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-
-        <!--        <Button-->
-<!--            android:id="@+id/btnfacebook"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="click me"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/guideline4"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/guideline3"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn_fingerprintSignIn" />-->
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnGoogleWithoutFirebase"
             android:layout_width="0dp"

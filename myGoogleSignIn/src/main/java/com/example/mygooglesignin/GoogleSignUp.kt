@@ -47,8 +47,7 @@ object GoogleSignUp {
 
     fun activityResult(requestCode: Int,
                        resultCode: Int,
-                       data: Intent?,
-                       ){
+                       data: Intent?){
 
             if (requestCode == 1001){
                 try {

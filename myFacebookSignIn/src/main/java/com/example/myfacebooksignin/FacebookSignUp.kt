@@ -22,7 +22,7 @@ object FacebookSignUp {
         callbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
+                override fun onSuccess(result: LoginResult) {
                     Log.d("onSuccess", "onSuccess: User Login Successful")
                     Profile.getCurrentProfile()?.let { success.invoke(it) }
 
@@ -31,12 +31,12 @@ object FacebookSignUp {
 
                     //Graph API to access the data of user's facebook account
                     val request = GraphRequest.newMeRequest(
-                        loginResult.accessToken
+                        result.accessToken
                     ) { _, _ ->
 
                         //For safety measure enclose the request with try and catch
                         try {
-                            loginResult.accessToken.let {
+                            result.accessToken.let {
                                 //get current instance of logged profile
                                 val profile = Profile.getCurrentProfile()
                                 //get current id
@@ -60,9 +60,9 @@ object FacebookSignUp {
                     LoginManager.getInstance().logOut()
                 }
 
-                override fun onError(exception: FacebookException) {
+                override fun onError(error: FacebookException) {
                     Log.d("onError", "Error logged")
-                    failure.invoke(exception)
+                    failure.invoke(error)
                     return
                 }
             })
