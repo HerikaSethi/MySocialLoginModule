@@ -15,7 +15,7 @@ sonarqube {
 
     properties {
 
-        property "sonar.host.url", "http://104.236.112.77:9000/"
+        property "sonar.host.url", "http://138.197.70.44:9000/"
 
         property "sonar.username", "admin"
 
