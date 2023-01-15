@@ -9,11 +9,13 @@ android {
 
     signingConfigs {
         create("production-release") {
-            storeFile =
-                    file("/Users/bigoh/social-login/keystore")
+            storeFile = file("/Users/bigoh/social-login/app/MyKeystore.jks")
+//            storeFile =
+//                    file("/Users/bigoh/social-login/keystore")
 
             storePassword = "Test@123"
-            keyAlias = "key"
+           // keyAlias = "key"
+            keyAlias = "MyKeystore"
             keyPassword = "Test@123"
         }
     }
