@@ -1,4 +1,4 @@
-# Social Login Module
+# Social Login Module [![Android CI](https://github.com/HerikaSethi/MySocialLoginModule/actions/workflows/android.yml/badge.svg)](https://github.com/HerikaSethi/MySocialLoginModule/actions/workflows/android.yml)
 
 This is a modular project in kotlin which includes Social Login CTAs and functionality.
 The user can import this as module into their projects and implement the social logins by calling some simple functions.
